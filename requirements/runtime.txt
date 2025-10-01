@@ -1,4 +1,4 @@
-imgaug
+imaug>=0.4.2, <1
 lmdb
 matplotlib
 numpy
