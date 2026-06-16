@@ -77,15 +77,16 @@ def add_mim_extension():
 
 
 def get_version():
+    namespace = {}
     with open(version_file) as f:
-        exec(compile(f.read(), version_file, 'exec'))
+        exec(compile(f.read(), version_file, 'exec'), namespace)
     import sys
 
     # return short version for sdist
     if 'sdist' in sys.argv or 'bdist_wheel' in sys.argv:
-        return locals()['short_version']
+        return namespace['short_version']
     else:
-        return locals()['__version__']
+        return namespace['__version__']
 
 
 def parse_requirements(fname='requirements.txt', with_version=True):
